@@ -4,11 +4,10 @@ import { getArticles, setCurrentPage } from "../redux/reducers/articleReducer";
 import { getPopularCategories } from "../redux/reducers/categoryReducer";
 import ArticleCard from "../components/Article/ArticleCard";
 import Category from "../components/Category/Category";
-import { Button } from "flowbite-react";
 import LoadmoreButton from "../components/Button/LoadmoreButton";
 
 function Home() {
-  const { articles, loading, currentPage, numberOfPages } = useSelector(
+  const { articles, currentPage, numberOfPages } = useSelector(
     (state) => ({
       ...state.article,
     })
@@ -29,14 +28,13 @@ function Home() {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto mt-16 px-4 pb-5 sm:px-6 xl:max-w-5xl xl:px-0">
+    <div className="max-w-3xl mx-auto mt-20  px-4 pb-5 sm:px-6 xl:max-w-5xl xl:px-0">
       <div className="flex justify-between container mx-auto">
         <div className="w-full lg:w-8/12">
           {articles &&
             articles.map((article) => (
               <ArticleCard key={article.id} article={article} />
             ))}
-
           <LoadmoreButton
             setCurrentPage={setCurrentPage}
             numberOfPages={numberOfPages}

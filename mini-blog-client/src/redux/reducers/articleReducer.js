@@ -9,11 +9,11 @@ export const createArticle = createAsyncThunk(
         title: updatedArticleData.title,
         content: updatedArticleData.content,
         categoryId: updatedArticleData.categoryId,
-        published: updatedArticleData.published
-      }
+        published: updatedArticleData.published,
+      };
       const response = await api.createArticle(payload);
       toast.success("Article added Successfully");
-      navigate(`/articles/${response.data.id}`);
+      navigate('/');
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -29,7 +29,7 @@ export const getArticles = createAsyncThunk(
       return {
         response,
         query: query,
-      }
+      };
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -48,7 +48,6 @@ export const getArticle = createAsyncThunk(
     }
   }
 );
-
 
 export const getUserArticles = createAsyncThunk(
   "article/getUserArticles",
@@ -83,12 +82,12 @@ export const updateArticle = createAsyncThunk(
         title: updatedArticleData.title,
         content: updatedArticleData.content,
         categoryId: updatedArticleData.categoryId,
-        published: updatedArticleData.published
-      }
-      
+        published: updatedArticleData.published,
+      };
+
       const response = await api.updateArticle(payload, id);
       toast.success("Article Updated Successfully");
-      navigate("/");
+      navigate(`/articles/${response.data.id}`);
       return response;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -97,12 +96,11 @@ export const updateArticle = createAsyncThunk(
 );
 
 function arrayWithNoDuplicates(array, field) {
-  const arrayWithoutNoDuplicates = array.filter((value, index, self) =>
-    index === self.findIndex((t) => (
-      t[field] === value[field]
-    ))
-  )
-  return arrayWithoutNoDuplicates
+  const arrayWithoutNoDuplicates = array.filter(
+    (value, index, self) =>
+      index === self.findIndex((t) => t[field] === value[field])
+  );
+  return arrayWithoutNoDuplicates;
 }
 
 const articleSlice = createSlice({
@@ -128,10 +126,16 @@ const articleSlice = createSlice({
     },
     [createArticle.fulfilled]: (state, action) => {
       state.loading = false;
-      if(action.payload.published == false) {
-        state.userArticles = arrayWithNoDuplicates( [...state.userArticles, ...[action.payload]], 'id' )
+      if (action.payload.published == false) {
+        state.userArticles = arrayWithNoDuplicates(
+          [...[action.payload], ...state.userArticles],
+          "id"
+        );
       } else {
-        state.articles = arrayWithNoDuplicates( [...state.articles, ...[action.payload]], 'id' )
+        state.articles = arrayWithNoDuplicates(
+          [...[action.payload], ...state.articles],
+          "id"
+        );
       }
     },
     [createArticle.rejected]: (state, action) => {
@@ -143,7 +147,10 @@ const articleSlice = createSlice({
     },
     [getArticles.fulfilled]: (state, action) => {
       state.loading = false;
-      state.articles = arrayWithNoDuplicates( [...state.articles, ...action.payload.response.data.result], 'id' )
+      state.articles = arrayWithNoDuplicates(
+        [...action.payload.response.data.result, ...state.articles],
+        "id"
+      );
       state.numberOfPages = action.payload.response.data.numberOfPages;
       state.currentPage = action.payload.response.data.currentPage;
     },
@@ -167,7 +174,7 @@ const articleSlice = createSlice({
     },
     [getUserArticles.fulfilled]: (state, action) => {
       state.loading = false;
-      state.userArticles= action.payload;
+      state.userArticles = action.payload;
     },
     [getUserArticles.rejected]: (state, action) => {
       state.loading = false;
@@ -181,9 +188,11 @@ const articleSlice = createSlice({
       const {
         arg: { id },
       } = action.meta;
-   
+
       if (id) {
-        state.userArticles = state.userArticles.filter((item) => item.id !== id);
+        state.userArticles = state.userArticles.filter(
+          (item) => item.id !== id
+        );
         state.articles = state.articles.filter((item) => item.id !== id);
       }
     },
@@ -200,9 +209,9 @@ const articleSlice = createSlice({
       const {
         arg: { id },
       } = action.meta;
-      console.log({t:'from update', meta: action.meta, pay:action.payload})
+      console.log({ t: "from update", meta: action.meta, pay: action.payload });
       if (id) {
-        console.log
+        console.log;
         state.userArticles = state.userArticles.map((item) =>
           item.id === id ? action.payload.data : item
         );
