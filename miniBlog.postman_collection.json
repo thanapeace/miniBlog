@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "8e230450-7844-45a5-b6d8-41642daa2483",
+		"name": "miniBlog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API-URL}}/users/clllv46kt0000tsgcmd7o5d2r",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"users",
+								"clllv46kt0000tsgcmd7o5d2r"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleter user by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"cllltkztk0001tss8m4l6c724\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/users/delete",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"users",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API-URL}}/users/cllm7129b0000ts6k1wwpiemk/articles",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"users",
+								"cllm7129b0000ts6k1wwpiemk",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "Deleter article",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"cllm3qsas0000tsgwaq8nrkjv\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/articles/delete",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"articles",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create article",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"title\": \"Article 5\",\r\n    \"content\": \"accusamus delectus nihil quis \",\r\n    \"categoryId\": 6,\r\n    \"published\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/articles/create",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"articles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update article",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Article12345\",\r\n    \"content\": \"accusamus delectus nihil quisxxzxz\",\r\n    \"categoryId\": 1,\r\n    \"published\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/articles/cllm8j61e0000tsy8y0zrzlkk/update",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"articles",
+								"cllm8j61e0000tsy8y0zrzlkk",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Article by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API-URL}}/articles/cllm9v2l30003tsgksfniwcc3",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"articles",
+								"cllm9v2l30003tsgksfniwcc3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API-URL}}/articles?categoryId=null&take=null&skip=null",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"articles"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "null"
+								},
+								{
+									"key": "take",
+									"value": "null"
+								},
+								{
+									"key": "skip",
+									"value": "null"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"abc4@test.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/auth/login",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"kitty\",\r\n    \"email\": \"abc4@test.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API-URL}}/auth/register",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get top ten categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API-URL}}/categories",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API-URL}}/categories",
+							"host": [
+								"{{API-URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsbG03MTI5YjAwMDB0czZrMXd3cGllbWsiLCJlbWFpbCI6ImFiYzRAdGVzdC5jb20iLCJpYXQiOjE2OTI3MDQwNzB9.fIRM5g4cI2bKG70iAyPoYev5XNlCFxi5xQ_7p41bXTE"
+		}
+	]
+}
