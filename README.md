@@ -4,20 +4,25 @@
 This is a code repository for an assignement of Full-Stack blog application using Express.js with Node.js for the Backend, React for the Frontend and MySQL alongwith Prisma for the database.
 
 Major requirement of the Web Application:
- - The user can  Add/Update/Delete a  post
+ - The user can  Add/Update/Delete a  post.
  - Showing posts order by publication date.
- - Login/Register and create an account using an email/password
- - Showing the top 10 categories
+ - Login/Register and create an account using an email/password.
+ - Showing the top 10 categories.
 
 
 ## Setup and Run Locally
 
-To run the app locally run you have to run Backend and Frontend seperately. 
+To run the app locally you have to run Backend and Frontend seperately. 
 ### Backend Side
 Go to the project directory
 ```bash
     cd mini-blog-api
     npm install
+```
+
+Replace DATABASE_URL in .env from DATABASE_URL in this file https://drive.google.com/file/d/1EQIRwCXBS2aKDKSp3I2-S4vN_zgO5Pvt/view?usp=sharing
+```bash
+DATABASE_URL="mysql://root:123456@localhost:3306/prisma-react"
 ```
 
 Start the server
