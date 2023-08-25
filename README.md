@@ -23,7 +23,7 @@ Go to the project directory
 add this to .env file
 ```bash
     API_PORT=5000
-    DATABASE_URL='mysql://bo1yb1jsec7lkuaxd91y:pscale_pw_SGCayYpY6QKrEODvNaPkmTVvkJtI9MJHpxjmRJNHEbw@aws.connect.psdb.cloud/mini-blog?sslaccept=strict'
+    DATABASE_URL='mysql://29qy47pdamftb8f75gxw:pscale_pw_m4L4lx4KeR4IOCVJtf8v1yrScj8OZiI9awl3iVplb3R@aws.connect.psdb.cloud/mini-blog?sslaccept=strict'
 ```
 
 Start the server
