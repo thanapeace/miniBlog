@@ -20,6 +20,12 @@ Go to the project directory
     npm install
 ```
 
+add this to .env file
+```bash
+    API_PORT=5000
+    DATABASE_URL='mysql://bo1yb1jsec7lkuaxd91y:pscale_pw_SGCayYpY6QKrEODvNaPkmTVvkJtI9MJHpxjmRJNHEbw@aws.connect.psdb.cloud/mini-blog?sslaccept=strict'
+```
+
 Start the server
 
 ```bash
